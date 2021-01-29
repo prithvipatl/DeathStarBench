@@ -27,6 +27,7 @@ Supported actions:
 ## Running the social network application
 ### Before you start
 - Install Docker and Docker Compose.
+- More instructions on using Cassandra as [backend storage for jaeger](#cassandra.md).
 - Make sure the following ports are available: port `8080` for Nginx frontend, `8081` for media frontend and 
   `16686` for Jaeger.
 

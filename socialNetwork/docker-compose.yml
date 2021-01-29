@@ -240,25 +240,6 @@ services:
       - ./media-frontend/lua-scripts:/usr/local/openresty/nginx/lua-scripts
       - ./media-frontend/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
 
-  cassandra:
-    image: cassandra:latest
-    hostname: cassandra
-    ports:
-      - 9042:9042
-    restart: always
-    volumes:
-      - ../../../data:/var/lib/cassandra
-      - ../../init-scripts:/docker-entrypoint-initdb.d
-    environment:
-      - MODE=test
-
-  cassandra2:
-    image: cassandra:latest
-    hostname: cassandra2
-    restart: always
-    environment:
-      - CASSANDRA_SEEDS=cassandra
-    
   jaeger:
     image: jaegertracing/all-in-one:latest
     hostname: jaeger
@@ -274,4 +255,4 @@ services:
     environment:
       - COLLECTOR_ZIPKIN_HTTP_PORT=9411
       - SPAN_STORAGE_TYPE=cassandra
-      - CASSANDRA_SERVERS=cassandra
+      - CASSANDRA_SERVERS=${CASSANDRA_SERVER}
